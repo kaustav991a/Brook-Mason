@@ -1,0 +1,176 @@
+/** @format */
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+ @import url('https://cdn.jsdelivr.net/npm/cf-gotham-fonts@1.0.0/gotham-font.min.css');
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+img {
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  display: inline-block;
+  color: #000;
+  &:hover {
+    text-decoration: none;
+    color: #000;
+  }
+}
+
+body {
+font-family: "Anton", sans-serif;
+  overflow-x: hidden;
+  color: #000;
+  position: relative;
+}
+
+h1{
+  color: var(--Vibrant, #DB4A2F);
+font-size: 15.625rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+ line-height: 15rem;
+span{
+  display: block;
+}
+}
+h2{
+  color: var(--Blue, #3363E8);
+font-size: 4rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+p{
+  color: var(--Brown, #823523);
+ font-family: 'GothamHTF';
+font-size: 1rem;
+font-style: normal;
+font-weight: 400;
+line-height: 1.75rem; /* 175% */
+}
+h5{
+  color: var(--Vibrant, #DB4A2F);
+font-size: 1.25rem;
+font-style: normal;
+font-weight: 400;
+line-height: 2rem; /* 160% */
+}
+
+ul {
+  list-style: none;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+.btn-sec {
+  a:not(:last-child) {
+    margin-right: 0.6875rem;
+  }
+}
+
+.body-bg{
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.banner{
+  position: relative;
+  .container{
+    position: relative;
+    padding: 9.5rem 0 0;
+  }
+  .img-sec{
+    position: absolute;
+    left: 0;
+    top: 0;
+    .quote{
+      max-height: 20.75rem;
+      position: absolute;
+      right: 0;
+      bottom: -4.9rem;
+      z-index: 1;
+    }
+  }
+  .heading{
+    position: relative;
+    .steelyard{
+       position: absolute;
+    right: -0.5rem;
+    bottom: 0.3rem;
+    max-height: 13.375rem;
+    width: 14.5625rem;
+      img{
+        display: block;
+        margin: auto;
+      }
+      .shold{
+        position: absolute;
+        left: -0.1875rem;
+        right: 0;
+        margin: auto;
+        top: 0;
+      }
+      img.left-w {
+    position: absolute;
+    top: 2.5rem;
+}
+img.right-w {
+    position: absolute;
+    right: 0;
+    top: 0.5rem;
+}
+    }
+  }
+  .lady-img{
+   max-height: 60.625rem;
+   margin-top: 2.4rem;
+   margin-left: -2rem;
+   position: relative;
+   z-index: 2;
+  }
+  h1{
+    margin-bottom: 2rem;
+    margin-right: 1.5rem;
+    text-align: right;
+    span{
+      text-align: left;
+          margin-left: -2.8rem;
+    }
+  }
+  h2{
+      margin-top: 2.2rem;
+    position: relative;
+    z-index: 3;
+  }
+  h5{
+    max-width: 26.125rem;
+    margin-left: auto;
+    margin-right: 7rem;
+    margin-top: 7rem;
+  }
+  p{
+    max-width: 19.125rem;
+    margin-right: 14rem;
+    margin-left: auto;
+  }
+}
+
+
+
+
+
+

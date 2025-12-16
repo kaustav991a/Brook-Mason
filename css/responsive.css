@@ -1,0 +1,156 @@
+/* only menubar */
+
+@media(max-width:991px){
+  .slim-container .slim-nav ul{
+    display: block;
+  }
+  header .container{
+    position: relative;
+  }
+  .slim-container .slim-bar{  
+    background: transparent;
+  }
+  .slim-container a.slimNav_sk78-reveal{
+    color: #000;
+    top: 1rem !important;
+    font-size: 1.5625rem !important;
+    padding: 0rem 0.8125rem 0.6875rem 0.8125rem;
+  }
+  .slimclose{
+    padding-top: 1rem !important;
+  }
+  .slim-container .slim-nav{
+    margin-top: 4.075rem;
+    /* background: linear-gradient(95.47deg, #15baf2 25.08%, #09254b 106.74%); */
+    background:  #000000;
+  }
+  .slim-container .slim-nav ul li{
+    overflow-x: hidden;
+  }
+  .slim-container .slim-nav ul li a{
+    padding: 1em 4%;
+    font-size: 0.9rem;
+  }
+  .slim-container .slim-nav ul li a.slim-expand{
+    line-height: 12px;
+    height: 20px;
+  }
+  .slim-container .slim-nav ul li li a {
+    width: 100%;
+    padding: 1em 4%;
+    opacity: 1 !important;
+}
+div#navigation {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+.slim-container a.slimNav_sk78-reveal span{
+  color: #ffffff !important;
+}
+.slim-container a.slimNav_sk78-reveal span{
+  background: #ffffff;
+  margin-top: 0.4375rem;
+}
+a.slimNav_sk78-reveal.slimclose {
+  color: #fff;
+  padding-top: 6px !important;
+}
+
+header .logo-sec{
+  position: relative;
+  z-index: 99999999;
+  padding: 0.4375rem;
+}
+.logo-sec img{
+  height: 50px;
+}
+header a.glb-btn {
+  position: absolute;
+  top: 14px;
+  right: 55px;
+  z-index: 9999999;
+}
+header{
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #000000;
+  z-index: 999;
+  padding: 0;
+}
+}
+@media (min-width: 1201px) and (max-width: 1400px) {
+ 
+}
+@media (min-width: 1025px) and (max-width: 1199px) {
+ 
+}
+
+@media (min-width: 992px) and (max-width: 1100px) {
+ 
+}
+/* for tab  only */
+/* for tab only */
+/* for tab  only */
+@media (min-width: 768px) and (max-width: 991px) {
+  h2 {
+    font-size: 1.6rem !important;
+    line-height: 2.2rem !important;
+}
+  p{
+    font-size: 0.95rem;
+  }
+  h3{
+    font-size: 1.6rem !important;
+    line-height: 2rem;
+  }
+  .glb-btn{
+    padding: 0.6rem 0.475rem;
+    font-size: 0.9rem;
+  }
+ 
+}
+/* for mobile only */
+/* for mobile  only */
+@media (max-width:767px) {
+  html{
+    font-size: 87%;
+  }
+  h1{
+    font-size: 2.55rem !important;
+    line-height: 2rem;
+    margin-bottom: 1.375rem;
+  }
+  h2{
+    font-size: 1.65rem !important;
+    line-height: 2rem;
+    margin-bottom: 1.375rem;
+  }
+  h3{
+    font-size: 1.47rem !important;
+    line-height: 2.1rem;
+  }
+  h4{
+    font-size: 1.125rem !important;
+  }
+  h5{
+    font-size: 1.125rem !important;
+  }
+  p,.list li{
+    font-size: 0.9rem !important;
+  }
+  .glb-btn {
+    padding: 0.9rem 1.075rem !important;
+    font-size: 0.9rem;
+  }
+ 
+}
+
+@media(min-width:1025px) and (max-width:1400px){
+  html{
+    font-size: 86.8%;
+  }
+}
