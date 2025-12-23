@@ -1,31 +1,3 @@
-// Disable browser scroll restoration to prevent conflicts with ScrollTrigger
-history.scrollRestoration = "manual";
-
-// Global array to track active lines for cleanup
-let activeLines = [];
-
-// Function to clear all lines
-function clearAllLines() {
-  activeLines.forEach(($line) => $line.remove());
-  activeLines = [];
-}
-
-// Function to recalc all lines (clear and re-run creations)
-function recalcAllLines() {
-  clearAllLines();
-  // Re-run all line creations below
-  // initAllLines();
-}
-
-// Global function to refresh ScrollTrigger and related elements
-function globalRefresh() {
-  ScrollTrigger.refresh();
-  if (typeof AOS !== "undefined") {
-    AOS.refreshHard(); // Force AOS to recalc positions
-  }
-  recalcAllLines(); // Recalc lines after refresh
-}
-
 $(document).ready(function () {
   $("#navigation nav").slimNav_sk78();
   $("#nav-icon0").click(function () {
@@ -121,7 +93,6 @@ let chaosSwiper = new Swiper(".chaosSwiper", {
   },
 });
 
-// Enhanced initHorizontalScroll with kill/re-init and debug
 function initHorizontalScroll() {
   const section = document.querySelector(".family-law-strategist");
   const slidesContainer = document.querySelector(
@@ -129,17 +100,7 @@ function initHorizontalScroll() {
   );
   const slides = gsap.utils.toArray(".family-law-strategist .slide");
 
-  if (!section || !slidesContainer || slides.length === 0) {
-    console.warn("Horizontal scroll elements not found");
-    return;
-  }
-
-  // Kill any existing ScrollTrigger for this section
-  ScrollTrigger.getAll().forEach((trigger) => {
-    if (trigger.vars.trigger === section) {
-      trigger.kill();
-    }
-  });
+  if (!section || !slidesContainer || slides.length === 0) return;
 
   let ctx = gsap.context(() => {
     const calculateDistance = () => {
@@ -171,91 +132,15 @@ function initHorizontalScroll() {
   });
 }
 
-// Merged load event: Handles scroll-to-top first, then hold user
+// Update the global scroll refresh
 window.addEventListener("load", () => {
-  const initialScrollY = window.scrollY;
-  console.log("Initial scroll on load:", initialScrollY);
+  setTimeout(() => {
+    initHorizontalScroll();
 
-  // On refresh (mid-page): Scroll to top first, then hold
-  if (initialScrollY > 0) {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    setTimeout(() => {
-      // After scrolling to top, hold user (disable scroll)
-      document.body.style.overflow = "hidden";
-      console.log("Scrolled to top, now holding user in hero section");
-      proceedWithInit();
-    }, 500); // Wait for scroll-to-top to complete
-  } else {
-    // First-time user (at top): Hold immediately
-    document.body.style.overflow = "hidden";
-    console.log("First-time user: Holding at top in hero section");
-    proceedWithInit();
-  }
-
-  function proceedWithInit() {
-    // Function to enable scrolling and init everything
-    const enableScrollingAndInit = () => {
-      document.body.style.overflow = ""; // Restore scrolling
-      console.log("Scroll enabled - user can now scroll");
-
-      globalRefresh();
-      setTimeout(() => {
-        ScrollTrigger.refresh();
-        requestAnimationFrame(() => {
-          ScrollTrigger.refresh(); // Extra refresh for layout
-          initHorizontalScroll(); // Init pinning after settlement
-        });
-      }, 1000); // Wait for layout to settle
-
-      // Existing ScrollTrigger listener
-      ScrollTrigger.addEventListener("refresh", () => {
-        if (typeof AOS !== "undefined") AOS.refresh();
-      });
-
-      // Init lines
-      // initAllLines();
-    };
-
-    // Wait for menu-delay-active class (after 4s), then enable scrolling and init
-    const checkClassAndInit = () => {
-      if (document.body.classList.contains("menu-delay-active")) {
-        enableScrollingAndInit();
-      } else {
-        setTimeout(checkClassAndInit, 100); // Poll until class is added
-      }
-    };
-    checkClassAndInit();
-
-    // Watch for class changes (fallback)
-    const observer = new MutationObserver(() => {
-      if (document.body.classList.contains("menu-delay-active")) {
-        enableScrollingAndInit();
-        observer.disconnect(); // Stop watching
-      }
-    });
-    observer.observe(document.body, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-  }
-});
-
-// Throttled resize handler
-let resizeTimeout;
-$(window).on("resize", () => {
-  clearTimeout(resizeTimeout);
-  resizeTimeout = setTimeout(() => {
-    globalRefresh();
-  }, 100);
-});
-
-// Throttled scroll handler
-let scrollTimeout;
-$(window).on("scroll", () => {
-  clearTimeout(scrollTimeout);
-  scrollTimeout = setTimeout(() => {
-    // Handled inside original line functions
-  }, 50);
+    // Tell AOS to listen to ScrollTrigger's refresh
+    ScrollTrigger.addEventListener("refresh", () => AOS.refresh());
+    ScrollTrigger.refresh();
+  }, 200);
 });
 
 window.addEventListener("load", () => {
@@ -476,61 +361,6 @@ window.addEventListener("load", () => {
 });
 
 (function ($) {
-  initAllLines();
-
-  function initAllLines() {
-    //! Functions for lines
-    var hasRun = false;
-    var LINE_TRIGGER_CLASS = "menu-delay-active";
-
-    function runHeroLines() {
-      if (hasRun) return; // 🔒 only once
-      hasRun = true;
-
-      // ONLY these four
-      initBrookeLine();
-      initMasonLine();
-      initMasonVerticalLine();
-      initLadyImageLeftLine();
-      initBrookeToMakingVerticalLine();
-    }
-
-    function checkAndRun() {
-      if ($("body").hasClass(LINE_TRIGGER_CLASS)) {
-        if (typeof AOS !== "undefined") {
-          AOS.refreshHard();
-        }
-
-        setTimeout(runHeroLines, 300);
-      }
-    }
-
-    // Run if class already exists
-    $(window).on("load", function () {
-      checkAndRun();
-      initMainSecVerticalLine();
-      initSurvivorImgLeftLine();
-      initMakingTopDoubleLines();
-      initBorderAnimVerticalLine();
-      initSurvivorImgTopRightLine();
-      initMakingSenseSafeLine();
-      initMakingSenseImgVerticalLine();
-      initFamilyStrategistBottomLine();
-      initPodcastToMainftVerticalLine();
-      initPodcastRightVerticalLine();
-    });
-
-    // Watch for class being added later
-    var observer = new MutationObserver(function () {
-      checkAndRun();
-    });
-
-    observer.observe(document.body, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-  }
-
   //! Functions for lines
   function initBrookeLine() {
     var $line = $(".brooke-line");
@@ -646,7 +476,7 @@ window.addEventListener("load", () => {
       var rect = $mason[0].getBoundingClientRect();
 
       return {
-        x: rect.left + window.scrollX + 86, // end of "M"
+        x: rect.left + window.scrollX - 14, // end of "M"
         topY: window.scrollY, // top of viewport
         bottomY: rect.bottom + window.scrollY - 15, // start near MASON
       };
@@ -1648,4 +1478,55 @@ window.addEventListener("load", () => {
 
     window.addEventListener("scroll", checkTrigger);
   }
+
+  //! Functions for lines
+  var hasRun = false;
+  var LINE_TRIGGER_CLASS = "menu-delay-active";
+
+  function runHeroLines() {
+    if (hasRun) return; // 🔒 only once
+    hasRun = true;
+
+    // ONLY these four
+    initBrookeLine();
+    initMasonLine();
+    initMasonVerticalLine();
+    initLadyImageLeftLine();
+    initBrookeToMakingVerticalLine();
+  }
+
+  function checkAndRun() {
+    if ($("body").hasClass(LINE_TRIGGER_CLASS)) {
+      if (typeof AOS !== "undefined") {
+        AOS.refreshHard();
+      }
+
+      setTimeout(runHeroLines, 300);
+    }
+  }
+
+  // Run if class already exists
+  $(window).on("load", function () {
+    checkAndRun();
+    initMainSecVerticalLine();
+    initSurvivorImgLeftLine();
+    initMakingTopDoubleLines();
+    initBorderAnimVerticalLine();
+    initSurvivorImgTopRightLine();
+    initMakingSenseSafeLine();
+    initMakingSenseImgVerticalLine();
+    initFamilyStrategistBottomLine();
+    initPodcastToMainftVerticalLine();
+    initPodcastRightVerticalLine();
+  });
+
+  // Watch for class being added later
+  var observer = new MutationObserver(function () {
+    checkAndRun();
+  });
+
+  observer.observe(document.body, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
 })(jQuery);

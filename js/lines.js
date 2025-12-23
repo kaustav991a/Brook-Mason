@@ -1,226 +1,131 @@
-function createAnimatedLine(config) {
-  const {
-    section,
-    heading = null,
-    targetSpan = null,
-    anchor = null, // optional element to align from
-    lineId,
+(function ($) {
+  // Store fixed coordinates so they never change on resize
+  var FixedLineRegistry = [];
 
-    // triggers
-    triggerClass = null,
-    triggerType = "class", // "class" | "scroll" | "both"
-    scrollTriggerElement = null,
-    scrollOffset = 0,
-    once = true,
+  // Utility: check if element is in viewport
+  function isInViewport($el) {
+    var elementTop = $el.offset().top;
+    var elementBottom = elementTop + $el.outerHeight();
 
-    // line basics
-    direction = "vertical", // "vertical" or "horizontal"
-    position = "absolute",
-    duration = 1200,
-    thickness = 1,
-    backgroundColor = "transparent",
+    var viewportTop = $(window).scrollTop();
+    var viewportBottom = viewportTop + $(window).height();
 
-    // offsets
-    leftOffset = 0,
-    heightOffset = 0,
-    offsetTop = 0,
-    offsetRight = 0,
-    offsetBottom = 0,
-    offsetLeft = 0,
+    return elementBottom > viewportTop && elementTop < viewportBottom;
+  }
 
-    // sizing
-    extraWidth = 0,
-    extraHeight = 0,
-    freeWidth = null,
-    freeHeight = null,
+  // Main function to create & animate a line
+  window.createAnimatedLine = function (options) {
+    var settings = $.extend(
+      {
+        from: null, // jQuery element OR {x,y}
+        to: null, // jQuery element OR {x,y}
+        direction: "lr", // lr, rl, tb, bt, el-to-left, el-to-right
+        color: "#ff0000",
+        thickness: 2,
+        duration: 1200,
+        delay: 0,
+        trigger: "scroll", // scroll | bodyClass | viewport
+        bodyClass: "",
+        triggerElement: null,
+      },
+      options
+    );
 
-    // new features
-    useSectionBottom = false, // for horizontal line anchored to section bottom
-    toScreenEdge = null, // "left" or "right"
-  } = config;
+    var $line = $("<div></div>")
+      .css({
+        position: "absolute",
+        backgroundColor: settings.color,
+        zIndex: 9999,
+        opacity: 1,
+      })
+      .appendTo("body");
 
-  let hasAnimated = false;
+    // Calculate coordinates ONCE
+    function calculateCoordinates() {
+      var start = {},
+        end = {};
 
-  function animateLine() {
-    if (once && hasAnimated) return;
-
-    const $section = $(section);
-    if (!$section.length) return;
-
-    const $heading = heading ? $section.find(heading).first() : null;
-    const $span = targetSpan ? $section.find(targetSpan).first() : null;
-    const $anchor = anchor ? $section.find(anchor).first() : $span;
-
-    if (!($heading || $span || $anchor)) return;
-
-    $("#" + lineId).remove();
-
-    const headingOffset = $heading?.offset() || { top: 0 };
-    const headingHeight = $heading?.outerHeight() || 0;
-
-    const anchorOffset = $anchor?.offset() || $section.offset();
-    const anchorWidth = $anchor?.outerWidth() || 0;
-    const anchorHeight = $anchor?.outerHeight() || 0;
-
-    let $line,
-      animationProps = {};
-
-    /* ========= VERTICAL ========= */
-    if (direction === "vertical") {
-      const startTop =
-        (headingOffset.top || anchorOffset.top) +
-        (headingHeight || anchorHeight) -
-        heightOffset +
-        offsetTop -
-        offsetBottom;
-
-      const finalHeight =
-        freeHeight !== null ? freeHeight : startTop + extraHeight;
-
-      $line = $("<div>", { id: lineId }).css({
-        position,
-        left:
-          (anchorOffset.left || 0) +
-          leftOffset +
-          offsetLeft -
-          offsetRight +
-          "px",
-        top: startTop + "px",
-        width: thickness + "px",
-        height: 0,
-        backgroundColor,
-        zIndex: 1,
-        pointerEvents: "none",
-      });
-
-      animationProps = {
-        top: 0 + offsetTop,
-        height: finalHeight,
-      };
-    }
-
-    /* ========= HORIZONTAL ========= */
-    if (direction === "horizontal") {
-      const topPos = useSectionBottom
-        ? $section.offset().top +
-          $section.outerHeight() -
-          heightOffset +
-          offsetTop -
-          offsetBottom
-        : anchorOffset.top +
-          anchorHeight +
-          heightOffset +
-          offsetTop -
-          offsetBottom;
-
-      let startLeft = anchorOffset.left + leftOffset + offsetLeft - offsetRight;
-      let finalWidth;
-
-      if (toScreenEdge === "left") {
-        finalWidth =
-          startLeft + extraWidth + (freeWidth !== null ? freeWidth : 0);
-        startLeft = 0;
-      } else if (toScreenEdge === "right") {
-        finalWidth =
-          window.innerWidth -
-          startLeft +
-          extraWidth +
-          (freeWidth !== null ? freeWidth : 0);
+      if (settings.from instanceof jQuery) {
+        var o = settings.from.offset();
+        start.x = o.left + settings.from.outerWidth() / 2;
+        start.y = o.top + settings.from.outerHeight() / 2;
       } else {
-        finalWidth = freeWidth !== null ? freeWidth : anchorWidth + extraWidth;
+        start = settings.from;
       }
 
-      $line = $("<div>", { id: lineId }).css({
-        position,
-        left: startLeft + "px",
-        top: topPos + "px",
-        width: 0,
-        height: thickness + "px",
-        backgroundColor,
-        zIndex: 1,
-        pointerEvents: "none",
-      });
+      if (settings.to instanceof jQuery) {
+        var o2 = settings.to.offset();
+        end.x = o2.left + settings.to.outerWidth() / 2;
+        end.y = o2.top + settings.to.outerHeight() / 2;
+      } else {
+        end = settings.to;
+      }
 
-      animationProps = { width: finalWidth };
+      return { start: start, end: end };
     }
 
-    $("body").append($line);
-    $line.animate(animationProps, duration, "swing");
+    var coords = calculateCoordinates();
+    FixedLineRegistry.push(coords);
 
-    hasAnimated = true;
-  }
+    // Initial line state
+    if (settings.direction === "lr" || settings.direction === "rl") {
+      $line.css({
+        top: coords.start.y,
+        left: Math.min(coords.start.x, coords.end.x),
+        height: settings.thickness,
+        width: 0,
+      });
+    } else {
+      $line.css({
+        left: coords.start.x,
+        top: Math.min(coords.start.y, coords.end.y),
+        width: settings.thickness,
+        height: 0,
+      });
+    }
 
-  /* ===============================
-     CLASS TRIGGER
-  ================================ */
-  if (triggerType === "class" || triggerType === "both") {
-    const observer = new MutationObserver(() => {
-      if ($("body").hasClass(triggerClass)) {
-        animateLine();
-      }
-    });
+    // Animate
+    function animateLine() {
+      setTimeout(function () {
+        if (settings.direction === "lr" || settings.direction === "rl") {
+          $line.animate(
+            {
+              width: Math.abs(coords.end.x - coords.start.x),
+            },
+            settings.duration
+          );
+        } else {
+          $line.animate(
+            {
+              height: Math.abs(coords.end.y - coords.start.y),
+            },
+            settings.duration
+          );
+        }
+      }, settings.delay);
+    }
 
-    observer.observe(document.body, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-  }
+    // Trigger logic
+    if (settings.trigger === "bodyClass") {
+      var bodyObserver = setInterval(function () {
+        if ($("body").hasClass(settings.bodyClass)) {
+          animateLine();
+          clearInterval(bodyObserver);
+        }
+      }, 100);
+    }
 
-  /* ===============================
-     SCROLL TRIGGER
-  ================================ */
-  if (triggerType === "scroll") {
-    const $trigger = scrollTriggerElement
-      ? $(scrollTriggerElement)
-      : $(section);
+    if (settings.trigger === "scroll") {
+      $(window).one("scroll", animateLine);
+    }
 
-    const onScroll = () => {
-      const triggerTop = $trigger.offset().top;
-      const scrollPos = $(window).scrollTop() + $(window).height();
-
-      if (scrollPos >= triggerTop + scrollOffset) {
-        animateLine();
-        if (once) $(window).off("scroll", onScroll);
-      }
-    };
-
-    $(window).on("scroll", onScroll);
-    onScroll(); // initial check
-  }
-
-  /* ===============================
-     BOTH (class + scroll)
-  ================================ */
-  if (triggerType === "both") {
-    const $trigger = scrollTriggerElement
-      ? $(scrollTriggerElement)
-      : $(section);
-
-    const onScroll = () => {
-      if (!$("body").hasClass(triggerClass)) return;
-
-      const triggerTop = $trigger.offset().top;
-      const scrollPos = $(window).scrollTop() + $(window).height();
-
-      if (scrollPos >= triggerTop + scrollOffset) {
-        animateLine();
-        if (once) $(window).off("scroll", onScroll);
-      }
-    };
-
-    $(window).on("scroll", onScroll);
-  }
-
-  /* ===============================
-     RESIZE
-  ================================ */
-  let resizeTimer;
-  $(window).on("resize", function () {
-    if (!hasAnimated) return;
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      hasAnimated = false;
-      animateLine();
-    }, 150);
-  });
-}
+    if (settings.trigger === "viewport" && settings.triggerElement) {
+      $(window).on("scroll", function () {
+        if (isInViewport(settings.triggerElement)) {
+          animateLine();
+          $(window).off("scroll");
+        }
+      });
+    }
+  };
+})(jQuery);

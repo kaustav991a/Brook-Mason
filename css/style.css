@@ -215,6 +215,7 @@ ul {
 .banner .heading .steelyard img {
   display: block;
   margin: auto;
+  will-change: transform;
 }
 .banner .heading .steelyard .shold {
   position: absolute;
@@ -222,15 +223,19 @@ ul {
   right: 0;
   margin: auto;
   top: 0;
+  transform: rotate(10deg);
+  transition: all 1s ease-in-out;
 }
 .banner .heading .steelyard img.left-w {
   position: absolute;
-  top: 2.5rem;
+  top: 1.7rem;
+  transition: all 1s ease-in-out;
 }
 .banner .heading .steelyard img.right-w {
   position: absolute;
   right: 0;
-  top: 0.5rem;
+  top: 1.4rem;
+  transition: all 1s ease-in-out;
 }
 .banner .lady-img {
   max-height: 60.625rem;
@@ -335,6 +340,10 @@ ul {
 
 .logo-slider {
   padding-bottom: 3.75rem;
+  background: url(../images/background-repeater.png) repeat;
+  position: relative;
+  z-index: 4;
+  background-size: 1.1563rem !important;
 }
 .logo-slider .swiper-container {
   width: 100%;
@@ -369,8 +378,6 @@ ul {
 .making-sense .making-top span:nth-child(2) {
   margin-bottom: 0;
   text-align: right;
-  border-top: 0.0625rem solid #db4a2f;
-  border-bottom: 0.0625rem solid #db4a2f;
 }
 .making-sense .making-btm {
   position: relative;
@@ -379,9 +386,9 @@ ul {
   width: 55vw;
   right: 0;
   position: relative;
+  z-index: 3;
   display: block;
   margin-left: auto;
-  border-left: 0.0625rem solid #db4a2f;
 }
 .making-sense .making-btm .img img {
   aspect-ratio: 897/569;
@@ -406,6 +413,8 @@ ul {
   align-items: flex-start;
   flex-direction: column;
   gap: 5.625rem;
+  position: relative;
+  top: -5rem;
 }
 .making-sense .making-btm .text h4 {
   max-width: 26.125rem;
@@ -459,9 +468,6 @@ ul {
 .family-law-strategist .text-outer p {
   margin-bottom: 0;
 }
-.family-law-strategist .top-sec {
-  border-bottom: 0.0625rem solid #db4a2f;
-}
 .family-law-strategist .slides {
   display: flex;
   align-items: center;
@@ -472,28 +478,30 @@ ul {
   flex-shrink: 0;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 15px;
 }
 .family-law-strategist .slide h3 {
   color: var(--Brown, #823523);
   font-family: Anton;
-  font-size: 3rem;
+  font-size: 2.8rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   margin-bottom: 0;
 }
-.family-law-strategist .slide .heading-arrow {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-}
-.family-law-strategist .slide .heading-arrow .innerarrow {
+.family-law-strategist .slide .innerarrow {
   display: flex;
   align-items: center;
   gap: 0.9375rem;
 }
-.family-law-strategist .slide .heading-arrow .innerarrow img {
+.family-law-strategist .slide .innerarrow img {
   width: 2.9375rem;
+}
+.family-law-strategist .slide .heading-arrow {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
 }
 .family-law-strategist .slide .cards {
   display: flex;
@@ -503,7 +511,7 @@ ul {
   gap: 1.6875rem;
   border-radius: 0 1.875rem 0 0;
   background: var(--Vibrant, #db4a2f);
-  height: 200px;
+  height: 12.5rem;
   justify-content: center;
 }
 .family-law-strategist .slide .cards h5 {
@@ -770,6 +778,19 @@ ul {
 .podcast {
   padding: 6.875rem 0 6.25rem;
   position: relative;
+  overflow: unset !important;
+}
+.podcast .container {
+  position: relative;
+}
+.podcast .pod-line-right {
+  top: -5.625rem;
+  bottom: -26.5625rem;
+  right: 7.5625rem;
+  width: 0.0625rem;
+  background-color: #db4a2f;
+  position: absolute;
+  z-index: 1;
 }
 .podcast h3 {
   margin-bottom: 1.875rem;
@@ -938,7 +959,7 @@ ul {
   margin-left: auto;
   position: fixed;
   right: 0;
-  z-index: 5;
+  z-index: 99;
   transition: all 1.05s ease-in-out;
 }
 .menu-outer .container .menu:before {
@@ -972,7 +993,7 @@ ul {
   background: var(--Vibrant, #db4a2f);
   max-width: 58.3125rem;
   position: fixed;
-  z-index: 4;
+  z-index: 9;
   right: 0;
   opacity: 0;
   pointer-events: none;
@@ -1080,7 +1101,7 @@ ul {
   margin-bottom: 0;
 }
 
-@media screen and (min-width: 1921px) {
+@media screen and (min-width: 120.0625rem) {
   .public-speaking {
     padding-bottom: 6.275rem;
   }
@@ -1116,6 +1137,7 @@ ul {
   top: 50%;
   right: 2vw;
   transform: translateY(-50%);
+  z-index: 9;
 }
 
 .banner .lady-img {
@@ -1125,14 +1147,26 @@ ul {
 }
 
 .menu-delay-active .banner .lady-img {
-  bottom: -10px;
+  bottom: -0.625rem;
 }
 .menu-delay-active .menu-outer .container .menu:before {
   scale: 1;
 }
+.menu-delay-active .menu-outer.active .menu:before {
+  border-color: white;
+}
+.menu-delay-active .banner .heading .steelyard .shold {
+  transform: rotate(0);
+}
+.menu-delay-active .banner .heading .steelyard img.left-w {
+  top: 2.4rem;
+}
+.menu-delay-active .banner .heading .steelyard img.right-w {
+  top: 0.5rem;
+}
 
 .slides-outer {
-  margin-top: 80px;
+  margin-top: 5rem;
 }
 
 #survivor-horizontal-line {

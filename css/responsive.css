@@ -1,156 +1,570 @@
 /* only menubar */
 
-@media(max-width:991px){
-  .slim-container .slim-nav ul{
-    display: block;
+@media(max-width:1399px) {
+  html {
+    font-size: 80%;
   }
-  header .container{
+
+  .family-law-strategist .slide h3 {
+    font-size: 2.5rem;
+    margin-left: 1.5rem;
+  }
+
+  /* .podcast .pod-line-right {
+    top: -4.5625rem;
+    bottom: -21.3125rem;
+    right: 6.4375rem;
+  } */
+  .family-law-strategist .slide h3 {
+    font-size: 2.8rem;
+    margin-left: 15px;
+  }
+}
+
+@media(max-width:1199px) {}
+
+@media(max-width:1024px) {
+
+  .brooke-line,
+  .mason-line,
+  .mason-vertical-line,
+  .lady-left-line,
+  .brooke-making-line,
+  .mainsec-vertical-line,
+  .survivor-img-top-line,
+  .making-line-top,
+  .making-line-bottom,
+  .survivor-img-left-line,
+  .making-sense-safe-line,
+  .making-sense-img-vertical-line,
+  .border-vertical-line,
+  .pod-line-right,
+  .podcast-mainft-line {
+    display: none !important;
+  }
+
+  .banner .heading .steelyard {
+    scale: 0.4;
+  }
+
+  .banner .heading .steelyard img.left-w {
+    left: -1.875rem;
+  }
+
+  .banner .heading .steelyard img.right-w {
+    right: -1.875rem;
+  }
+
+  body {
+    background-size: 0.5rem !important;
+  }
+
+  html {
+    font-size: 62%;
+  }
+}
+
+@media(max-width:991px) {
+  html {
+    font-size: 54%;
+  }
+
+  p {
+    line-height: 1.45rem !important;
+  }
+
+  h1,
+  .heading1 {
+    color: var(--Vibrant, #db4a2f);
+    font-size: 13.125rem;
+  }
+
+  .btn img {
+    width: 0.9375rem;
+  }
+
+  .menu-outer.active .container .menu .menu-inner span {
     position: relative;
   }
-  .slim-container .slim-bar{  
-    background: transparent;
+
+  .menu-outer.active .container .menu .menu-inner span:first-child {
+    top: -0.3125rem;
   }
-  .slim-container a.slimNav_sk78-reveal{
-    color: #000;
-    top: 1rem !important;
-    font-size: 1.5625rem !important;
-    padding: 0rem 0.8125rem 0.6875rem 0.8125rem;
+
+  .menu-outer.active .container .menu .menu-inner span:nth-child(2) {
+    top: 0.25rem;
   }
-  .slimclose{
-    padding-top: 1rem !important;
-  }
-  .slim-container .slim-nav{
-    margin-top: 4.075rem;
-    /* background: linear-gradient(95.47deg, #15baf2 25.08%, #09254b 106.74%); */
-    background:  #000000;
-  }
-  .slim-container .slim-nav ul li{
-    overflow-x: hidden;
-  }
-  .slim-container .slim-nav ul li a{
-    padding: 1em 4%;
-    font-size: 0.9rem;
-  }
-  .slim-container .slim-nav ul li a.slim-expand{
-    line-height: 12px;
-    height: 20px;
-  }
-  .slim-container .slim-nav ul li li a {
+}
+
+@media(max-width:767px) {
+  .banner .lady-img {
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
     width: 100%;
-    padding: 1em 4%;
-    opacity: 1 !important;
-}
-div#navigation {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 100%;
-}
-.slim-container a.slimNav_sk78-reveal span{
-  color: #ffffff !important;
-}
-.slim-container a.slimNav_sk78-reveal span{
-  background: #ffffff;
-  margin-top: 0.4375rem;
-}
-a.slimNav_sk78-reveal.slimclose {
-  color: #fff;
-  padding-top: 6px !important;
+    max-height: unset;
+  }
+
+  .banner .container {
+    position: relative;
+    padding: 5rem 0 0;
+  }
+
+  .banner .heading {
+    position: relative;
+    margin-top: -1.875rem;
+  }
+
+  .banner h1 {
+    margin-bottom: 0;
+    margin-right: 0;
+    text-align: right;
+  }
+
+  .banner h1 span {
+    text-align: end;
+    line-height: 8.6875rem;
+    margin: 0 !important;
+    display: block;
+  }
+
+  .banner .img-sec {
+    position: static;
+  }
+
+  .banner .img-sec img {
+    max-height: unset;
+    width: 100%;
+  }
+
+  html {
+    font-size: 90%;
+  }
+
+  h1,
+  .heading1 {
+    color: var(--Vibrant, #db4a2f);
+    font-size: 8.725rem;
+  }
+
+  .survivor .two-para p {
+    margin: 0 !important;
+  }
+
+  .podcast .section-heading h3:before {
+    width: 16.0625rem;
+    height: 8.0125rem;
+    background-size: cover !important;
+    background-size: 100% 100% !important;
+    top: -1.125rem;
+    left: 0;
+  }
+
+  .podcast .podcast-sec .podcast-main h5 {
+    font-size: 5.5rem;
+    line-height: 5.9rem;
+  }
+
+  .podcast .podcast-sec .podcast-main {
+    margin-bottom: 1rem;
+  }
+
+  .podcast-sec .row {
+    gap: 1.875rem;
+  }
+
+  .btn {
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 2rem;
+    letter-spacing: 0.1rem;
+  }
+
+  .podcast .podcast-sec .podcast-blog ul {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 0.3rem;
+  }
+
+  .mainft .ft-mid {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .mainft {
+    text-align: center;
+  }
+
+  .say-hello .img {
+    border: none;
+    padding-bottom: 2.5rem;
+  }
+
+  .say-hello .text {
+    margin-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .say-hello .text p {
+    font-size: 1.1rem;
+    line-height: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .fs-64-anton {
+    font-size: 2.5rem !important;
+    line-height: 3rem !important;
+  }
+
+  .say-hello .text {
+    text-align: center;
+  }
+
+  .say-hello .toptext-outer .heading1 {
+    display: block;
+    line-height: 7rem;
+    font-size: 5rem;
+    text-align: center;
+  }
+
+  .say-hello {
+    padding-top: 0;
+  }
+
+  .podcast {
+    padding: 2.5rem 0;
+    overflow: hidden !important;
+  }
+
+  .container {
+    padding-right: var(--bs-gutter-x, .75rem) !important;
+    padding-left: var(--bs-gutter-x, .75rem) !important;
+  }
+
+  .podcast .podcast-sec .podcast-slider .blogSwiper .blogarrows {
+    bottom: 0;
+    right: 0;
+    justify-content: center;
+  }
+
+  .podcast .podcast-sec .podcast-blog {
+    text-align: center;
+  }
+
+  .podcast .podcast-sec .podcast-blog ul {
+    justify-content: center;
+    margin-bottom: 0.3rem;
+  }
+
+  .podcast-sec {
+    text-align: center;
+  }
+
+  .public-top .heading1 {
+    font-size: 4rem;
+    line-height: 4.4rem;
+  }
+
+  .public-speaking .public-top {
+    position: relative;
+    top: 0;
+    text-align: center !important;
+  }
+
+  .public-speaking .lightsouter {
+    position: absolute;
+    top: 0.6875rem;
+    max-width: 33.75rem;
+    height: 0;
+    aspect-ratio: unset;
+    left: auto;
+    right: 0.625rem;
+    margin: 0 auto;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .public-speaking .lights {
+    width: 13rem;
+    max-width: 13rem;
+    height: 10.9375rem;
+  }
+
+  .public-speaking .stage {
+    max-width: 18rem;
+    /* width: 100%; */
+    height: 0.35rem;
+    position: absolute;
+    bottom: -7.55rem;
+    left: -12.9375rem;
+    right: 0;
+    margin: 0 auto;
+    z-index: 1;
+  }
+
+  .public-speaking .text-block {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .public-speaking .text-block p {
+    text-align: center;
+  }
+
+  .public-speaking .text-block.abs {
+    padding-top: 8.4125rem;
+    position: static;
+  }
+
+  .public-speaking .imgblock {
+    width: 3.75rem;
+    height: 3.85rem;
+    flex-shrink: 0;
+    margin: 0 auto;
+    position: absolute;
+    bottom: -6.7rem;
+    left: -10.975rem;
+    right: 0;
+    z-index: 1;
+    margin: 0 auto;
+  }
+
+  .public-speaking {
+    padding-bottom: 2.5rem;
+  }
+
+  .chaos {
+    padding: 2.5rem 0;
+    text-align: center;
+  }
+
+  .chaos .textslider {
+    overflow: hidden;
+    width: 100%;
+    position: absolute;
+    height: 36rem;
+    left: 0;
+    right: auto;
+    background-color: #823523;
+    clip-path: polygon(0 0, 100% 0, 100% 55%, 75% 100%, 14% 100%, 34% 60%, 0 60%);
+  }
+
+  .chaos .imgbx img {
+    display: block;
+    width: 42.5625rem;
+    height: unset;
+  }
+
+  .chaos .textslider .chaos-btngroup {
+    gap: 0.9rem;
+  }
+
+  .chaos .imgbx {
+    height: 32.5875rem;
+  }
+
+  .chaos .textbx {
+    padding: 0 0;
+    margin: 0;
+  }
+
+  .chaos .textslider-mask {
+    position: static;
+  }
+
+  .chaos .textbx p {
+    max-width: 100%;
+    position: static;
+    margin: 0 auto 20px;
+    text-align: center;
+  }
+
+  .chaos .textslider-mask {
+    position: static;
+    width: 100% !important;
+    overflow: hidden;
+    margin: 0 !important;
+  }
+
+  .banner p {
+    max-width: 100%;
+    margin-right: 0;
+    margin-left: auto;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .banner .heading .maskbox-outer {
+    bottom: -30px;
+    width: 14.5625rem;
+    left: 0;
+    margin: 0 auto 0;
+  }
+
+  .banner h5 {
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 110px;
+    text-align: center;
+  }
+
+  h2,
+  .heading2 {
+    color: var(--Blue, #3363e8);
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 2.5rem;
+  }
+
+  .banner h2 {
+    margin-top: 0;
+  }
+
+  .banner .container {
+    text-align: center;
+  }
+
+  menu-outer .container .menu {
+    width: 8rem;
+    height: 8rem;
+  }
+
+  .survivor .main-sec {
+    padding-top: 2.5rem;
+    text-align: center;
+  }
+
+  .survivor .surv-text {
+    padding-top: 2.5rem;
+  }
+
+  .banner .img-sec .quote {
+    max-height: unset;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    width: 70px;
+    left: 0;
+    margin: 0 auto;
+  }
+
+  .making-sense .making-top span {
+    display: block;
+    line-height: 3rem;
+    margin-bottom: 0.475rem;
+    padding-top: 0.1875rem;
+    font-size: 3.5rem;
+  }
+
+  .banner .banner-arrow {
+    position: static;
+  }
+
+  .survivor .surv-text p {
+    margin-bottom: 2.5rem;
+  }
+
+  .making-sense .making-btm .img {
+    width: 100%;
+    right: 0;
+    position: relative;
+    z-index: 3;
+    display: block;
+    margin-left: auto;
+  }
+
+  .making-sense .making-btm .text {
+    top: 0;
+  }
+
+  .making-sense .making-btm .container {
+    position: static;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: unset;
+    margin: 30px 0 0 0;
+    text-align: center;
+  }
+
+  .making-sense .making-btm .text {
+    gap: 1rem;
+  }
+
+  .making-sense .making-btm .text h4 {
+    line-height: 3rem;
+    text-align: center;
+  }
+
+  .making-sense .making-btm .img img {
+    margin-top: 0;
+  }
+
+  .family-law-strategist .text {
+    padding-top: 0;
+    border-right: none;
+  }
+
+  .family-law-strategist .text h4 {
+    display: inline-block;
+    margin-left: 0;
+    margin-bottom: 0;
+    position: relative;
+    bottom: 0;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .family-law-strategist .text-outer {
+    padding-top: 2.5rem;
+  }
+
+  .menu-outer.active .container .menu .menu-inner span:first-child {
+    top: -0.0125rem;
+  }
+
+  .menu-outer .container nav ul li {
+    font-family: Anton;
+    font-size: 3rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 3rem;
+  }
+
+  .menu-outer .container .menu {
+    width: 7rem;
+    height: 7rem;
+  }
+
+  .reachoutbtn {
+    position: fixed;
+    top: auto;
+    right: 4vw;
+    transform: unset;
+    z-index: 9;
+    bottom: 4vw;
+  }
+
+  .menu-outer .container nav ul {
+    gap: 1.5rem;
+  }
+
+  .menu-outer .container nav {
+    padding: 2rem;
+  }
+
+  .survivor .surv-text h3,
+  .survivor h3,
+  .survivor .two-para p,
+  .survivor .surv-text p {
+    text-align: center;
+  }
 }
 
-header .logo-sec{
-  position: relative;
-  z-index: 99999999;
-  padding: 0.4375rem;
-}
-.logo-sec img{
-  height: 50px;
-}
-header a.glb-btn {
-  position: absolute;
-  top: 14px;
-  right: 55px;
-  z-index: 9999999;
-}
-header{
-  position: sticky;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: #000000;
-  z-index: 999;
-  padding: 0;
-}
-}
-@media (min-width: 1201px) and (max-width: 1400px) {
- 
-}
-@media (min-width: 1025px) and (max-width: 1199px) {
- 
-}
-
-@media (min-width: 992px) and (max-width: 1100px) {
- 
-}
-/* for tab  only */
-/* for tab only */
-/* for tab  only */
-@media (min-width: 768px) and (max-width: 991px) {
-  h2 {
-    font-size: 1.6rem !important;
-    line-height: 2.2rem !important;
-}
-  p{
-    font-size: 0.95rem;
-  }
-  h3{
-    font-size: 1.6rem !important;
-    line-height: 2rem;
-  }
-  .glb-btn{
-    padding: 0.6rem 0.475rem;
-    font-size: 0.9rem;
-  }
- 
-}
-/* for mobile only */
-/* for mobile  only */
-@media (max-width:767px) {
-  html{
-    font-size: 87%;
-  }
-  h1{
-    font-size: 2.55rem !important;
-    line-height: 2rem;
-    margin-bottom: 1.375rem;
-  }
-  h2{
-    font-size: 1.65rem !important;
-    line-height: 2rem;
-    margin-bottom: 1.375rem;
-  }
-  h3{
-    font-size: 1.47rem !important;
-    line-height: 2.1rem;
-  }
-  h4{
-    font-size: 1.125rem !important;
-  }
-  h5{
-    font-size: 1.125rem !important;
-  }
-  p,.list li{
-    font-size: 0.9rem !important;
-  }
-  .glb-btn {
-    padding: 0.9rem 1.075rem !important;
-    font-size: 0.9rem;
-  }
- 
-}
-
-@media(min-width:1025px) and (max-width:1400px){
-  html{
-    font-size: 86.8%;
-  }
-}
+@media(min-width:1025px) and (max-width:1400px) {}

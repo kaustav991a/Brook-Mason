@@ -292,7 +292,7 @@
     <section class="chaos">
         <div class="container">
             <div class="row">
-                <div class="col-md-11">
+                <div class="col-md-11 border-anim">
                     <div class="row">
                         <div class="col-md-7">
                             <div class="imgbx">
@@ -410,6 +410,7 @@
 
     <section class="podcast">
         <div class="container">
+            <div class="pod-line-right"></div>
             <div class="section-heading">
                 <div class="row">
                     <div class="col-md-9 offset-lg-1">
